@@ -317,7 +317,7 @@ Nest only when need change the class comportament with interference for other cl
 .progress.active .progress-bar .progress-item span { ... }
 ```
 
-Always minify the CSS code. Task builders like [Grunt](http://gruntjs.com/) leaves this easier.
+Always minify the CSS code. [Webpack](https://webpack.js.org) leaves this easier. In [Webpack 4](https://github.com/webpack/webpack/releases) make default with 0 configuration.
 
 ```css
 <!-- Good -->
