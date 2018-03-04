@@ -1,1 +1,1 @@
-# fe-style-guide
+# Front-end Coding Style
