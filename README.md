@@ -20,11 +20,12 @@ The main influences for the CSS rules are [Code Guide by @mdo](https://github.co
 1. [CSS Syntax](#css-syntax)
 1. [CSS Declaration Order](#css-order)
 1. [CSS Class Name](#css-class-name)
+1. [CSS Units](#css-units)
 1. [CSS Performance](#css-performance)
 1. [CSS Media Queries](#css-media-queries) 
 
 <a name="css-syntax"></a>
-### 4.1. CSS Syntax
+### 3.1. CSS Syntax
 
 Use soft tabs with two spaces. You can configure your editor for this.
 
@@ -170,7 +171,7 @@ Use lowercase, shorthand hex values and avoid specifying units is zero-values.
 ```
 
 <a name="css-order"></a>
-### 4.2. CSS Declaration Order
+### 3.2. CSS Declaration Order
 
 The declarations should be added in alphabetical order.
 
@@ -201,7 +202,7 @@ The declarations should be added in alphabetical order.
 ```
 
 <a name="css-class-name"></a>
-### 4.3. CSS Class Name
+### 3.3. CSS Class Name
 
 Keep class lowercase and use dashes to separate the classname.
 
@@ -262,7 +263,28 @@ Avoid giving too short names for class and always choose meaningful names that p
 ```
 
 <a name="css-performance"></a>
-### 4.4. CSS Performance
+### 3.4. Units
+
+Pixels are ignorant, don’t use them.
+Use REMs for sizes and spacing.
+Use EMs for media queries.
+
+```
+/* Good */
+.btn {
+  font-size: 1.6rem;
+  padding: .5rem;
+}
+
+/* Bad */
+.btn {
+  font-size: 16px;
+  padding: 5px;
+}
+```
+
+<a name="css-performance"></a>
+### 3.5. CSS Performance
 
 Never use IDs.
 
@@ -333,7 +355,7 @@ Always minify the CSS code. [Webpack](https://webpack.js.org) leaves this easier
 ```
 
 <a name="css-media-queries"></a>
-### 4.5 CSS Media Queries
+### 3.6 CSS Media Queries
 
 Start the development with generic rules with and add media queries with mobile first.
 
