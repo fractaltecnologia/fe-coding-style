@@ -269,7 +269,7 @@ Pixels are ignorant, don’t use them.
 Use REMs for sizes and spacing.
 Use EMs for media queries.
 
-```
+```css
 /* Good */
 .btn {
   font-size: 1.6rem;
