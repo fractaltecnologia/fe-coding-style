@@ -8,6 +8,218 @@
 1. [JavaScript](#js)
 1. [References](#references)
 
+<a name="react"></a>
+## 2. React
+
+Our React Projects use [JavaScript Standard Style](https://github.com/standard/standard), but we have anothers rules for code organization with best practices.
+
+## 2.1 Class Based Component
+1. [Importing](#importing)
+1. [Initializing State](#state)
+1. [propTypes and defaultProps](#proptypes) 
+1. [Methods](#methods)
+
+<a name="importing"></a>
+# 2.1.1 Importing
+
+```javascript
+
+/* Good */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link, withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { DatePicker, Input, Icon } from 'antd'
+
+import moment from 'utils/momentUtils'
+import ActivitiesMiddleware from 'modules/activities/middleware'
+import Button from 'components/Ui/Buttons/ButtonDefault'
+import PageHeader from 'components/Ui/PageHeader'
+
+/* Bad */
+import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import moment from 'utils/momentUtils'
+import { DatePicker, Input, Icon } from 'antd'
+
+import ActivitiesMiddleware from 'modules/activities/middleware'
+
+import PageHeader from 'components/Ui/PageHeader'
+import Button from 'components/Ui/Buttons/ButtonDefault'
+
+```
+
+
+<a name="state"></a>
+# 2.1.2 Initializing State
+
+```javascript
+/* Good */
+import React, { Component } from 'react'
+
+class ActivityContainer extends Component {
+  state = { expanded: false }
+}
+
+/* Bad */
+import React, { Component } from 'react'
+
+class ActivityContainer extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { expanded: true }
+  }
+}
+
+```
+
+<a name="proptypes"></a>
+# 2.1.3 propTypes and defaultProps
+
+```javascript
+
+/* Good */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+class ActivityContainer extends Component {
+  state = { expanded: false }
+ 
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+    title: PropTypes.string
+  }
+ 
+  static defaultProps = {
+    model: {
+      id: 0
+    },
+    title: 'Your Name'
+  }
+}
+  
+/* Bad */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+class ActivityContainer extends Component {
+  state = { expanded: false }
+}
+
+ActivityContainer.propTypes = {
+  model: PropTypes.object.isRequired,
+  title: PropTypes.string
+}
+ 
+ActivityContainer.defaultProps = {
+  model: {
+    id: 0
+  },
+  title: 'Your Name'
+}
+ 
+```
+
+
+<a name="methods"></a>
+# 2.1.4 Methods
+
+```javascript
+/* Good */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+import ActivityForm from './form/ActivityForm
+
+class ActivityContainer extends Component {
+  state = { expanded: false }
+ 
+  static propTypes = {
+    model: object.isRequired,
+    title: string
+  }
+ 
+  static defaultProps = {
+    model: {
+      id: 0
+    },
+    title: 'Your Name'
+  }
+  
+  rennder () {
+    return <ActivityForm
+      handleSubmit={this.handleSubmit}
+      handleNameChange={this.handleNameChange}
+      handleExpand={this.handleExpand}
+    />
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.model.save()
+  }
+  
+  handleNameChange = (e) => {
+    this.props.model.changeName(e.target.value)
+  }
+  
+  handleExpand = (e) => {
+    e.preventDefault()
+    this.setState({ expanded: !this.state.expanded })
+  }
+}
+
+/* Bad */
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+import ActivityForm from './form/ActivityForm
+
+class ActivityContainer extends Component {
+  state = { expanded: false }
+ 
+  static propTypes = {
+    model: object.isRequired,
+    title: string
+  }
+ 
+  static defaultProps = {
+    model: {
+      id: 0
+    },
+    title: 'Your Name'
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.model.save()
+  }
+  
+  handleNameChange = (e) => {
+    this.props.model.changeName(e.target.value)
+  }
+  
+  handleExpand = (e) => {
+    e.preventDefault()
+    this.setState({ expanded: !this.state.expanded })
+  }
+  
+  rennder () {
+    return <ActivityForm
+      handleSubmit={this.handleSubmit}
+      handleNameChange={this.handleNameChange}
+      handleExpand={this.handleExpand}
+    />
+  }
+}
+```
+
+
+
 
 
 <a name="css"></a>
