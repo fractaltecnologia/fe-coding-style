@@ -16,7 +16,9 @@ Our React Projects use [JavaScript Standard Style](https://github.com/standard/s
 ## 2.1 Class Based Component
 1. [Importing](#importing)
 1. [Initializing State](#state)
-1. [propTypes and defaultProps](#proptypes) 
+1. [propTypes and defaultProps](#proptypes)
+1. [mapStateToProps and mapDispatchToProps](#map) 
+1. [Destructuring Props](#destructuring) 
 1. [Methods](#methods)
 
 <a name="importing"></a>
@@ -124,16 +126,70 @@ ActivityContainer.defaultProps = {
  
 ```
 
+<a name="map"></a>
+# 2.1.4 mapStateToProps and mapDispatchToProps
+
+```javascript
+
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import ActivityMiddleware from 'modules/activity/middleware'
+
+const mapStateToProps = ({ activity }) => ({
+  activity: activity.item,
+})
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    fetchActivityItemById: (id) => ActivityMiddleware.fetchActivityItemById(id),
+  }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityContainer)
+
+```
+
+<a name="destructuring"></a>
+# 2.1.5 Destructuring Props
+
+```javascript
+/* Good */
+
+const {
+  model,
+  title
+} = this.props
+
+<ExpandableForm 
+  onSubmit={this.handleSubmit} 
+  expanded={this.state.expanded} 
+  onExpand={this.handleExpand}>
+</ExpandableForm>
+
+/* bad */
+
+const { model, title } = this.props
+
+<ExpandableForm  onSubmit={this.handleSubmit} expanded={this.state.expanded} 
+  onExpand={this.handleExpand}>
+</ExpandableForm>
+
+```
 
 <a name="methods"></a>
-# 2.1.4 Methods
+# 2.1.6 Methods
 
 ```javascript
 /* Good */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import ActivityForm from './form/ActivityForm
+import ActivityMiddleware from 'modules/activity/middleware'
+import ActivityForm from './form/ActivityForm'
 
 class ActivityContainer extends Component {
   state = { expanded: false }
@@ -172,12 +228,37 @@ class ActivityContainer extends Component {
     this.setState({ expanded: !this.state.expanded })
   }
 }
+
+const mapStateToProps = ({ activity }) => ({
+  activity: activity.item,
+})
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    fetchActivityItemById: (id) => ActivityMiddleware.fetchActivityItemById(id),
+  }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityContainer)
 
 /* Bad */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
+import ActivityMiddleware from 'modules/activity/middleware'
 import ActivityForm from './form/ActivityForm
+
+const mapStateToProps = ({ activity }) => ({
+  activity: activity.item,
+})
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    fetchActivityItemById: (id) => ActivityMiddleware.fetchActivityItemById(id),
+  }, dispatch)
+)
 
 class ActivityContainer extends Component {
   state = { expanded: false }
@@ -216,10 +297,10 @@ class ActivityContainer extends Component {
     />
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityContainer)
+
 ```
-
-
-
 
 
 <a name="css"></a>
