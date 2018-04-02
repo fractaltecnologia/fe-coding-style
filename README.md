@@ -22,7 +22,7 @@ Our React Projects use [JavaScript Standard Style](https://github.com/standard/s
 1. [Methods](#methods)
 
 <a name="importing"></a>
-# 2.1.1 Importing
+### 2.1.1 Importing
 
 ```javascript
 
@@ -57,7 +57,7 @@ import Button from 'components/Ui/Buttons/ButtonDefault'
 
 
 <a name="state"></a>
-# 2.1.2 Initializing State
+### 2.1.2 Initializing State
 
 ```javascript
 /* Good */
@@ -80,7 +80,7 @@ class ActivityContainer extends Component {
 ```
 
 <a name="proptypes"></a>
-# 2.1.3 propTypes and defaultProps
+### 2.1.3 propTypes and defaultProps
 
 ```javascript
 
@@ -127,7 +127,7 @@ ActivityContainer.defaultProps = {
 ```
 
 <a name="map"></a>
-# 2.1.4 mapStateToProps and mapDispatchToProps
+### 2.1.4 mapStateToProps and mapDispatchToProps
 
 ```javascript
 
@@ -152,7 +152,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ActivityContainer)
 ```
 
 <a name="destructuring"></a>
-# 2.1.5 Destructuring Props
+### 2.1.5 Destructuring Props
 
 ```javascript
 /* Good */
@@ -179,7 +179,7 @@ const { model, title } = this.props
 ```
 
 <a name="methods"></a>
-# 2.1.6 Methods
+### 2.1.6 Methods
 
 ```javascript
 /* Good */
