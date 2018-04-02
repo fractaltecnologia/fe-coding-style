@@ -248,7 +248,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import ActivityMiddleware from 'modules/activity/middleware'
-import ActivityForm from './form/ActivityForm
+import ActivityForm from './form/ActivityForm'
 
 const mapStateToProps = ({ activity }) => ({
   activity: activity.item,
