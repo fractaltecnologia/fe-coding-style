@@ -82,6 +82,8 @@ class ActivityContainer extends Component {
 <a name="proptypes"></a>
 ### 2.1.3 propTypes and defaultProps
 
+PropTypes should be defined only on dumb components!
+
 ```javascript
 
 /* Good */
